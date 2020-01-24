@@ -1,0 +1,86 @@
+
+body {
+    background-color: rgb(211, 211, 211)
+}
+
+h1 {
+    font-size: 1.75em;
+    margin-bottom: 1em;
+}
+
+/* h2 {
+    font-size: 1.75em;
+    margin-bottom: 1em;
+} */
+
+a.playnow {
+    margin-top: 4em;
+}
+
+div.nav-wrapper {
+    background-color: rgb(128, 125, 125);
+}
+
+div.default {
+    background-color: rgb(255, 255, 255);
+    margin-top: 4em;
+    text-align: center;
+    min-height: 35em;
+    border-radius: .5em;
+    box-shadow: 5px 5px 10px rgb(167, 165, 165);
+    padding: .5em;
+}
+
+div.game {
+    background-color: rgb(255, 255, 255);
+    margin-top: 4em;
+    margin-bottom: 4em;
+    text-align: center;
+    min-height: 35em;
+    border-radius: .5em;
+    box-shadow: 5px 5px 10px rgb(167, 165, 165);
+    padding: 1em;
+    display: none;
+}
+
+span {
+    padding: .5em;
+}
+
+
+span.highscore {
+    margin-left: 15%;
+}
+
+.choice {
+    background-color: rgb(150, 48, 150);
+    color: rgb(255, 255, 255);
+    opacity: .7;
+    font-size: 1.25em;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1em;
+    padding: 1em;
+    border-radius: .5em;
+}
+
+.saveScore {
+    display: none; 
+}
+
+.correct {
+ background-color: green;
+}
+
+.incorrect {
+    background-color: red;
+}
+
+@media screen and (max-width: 992px) {
+
+    span.highscore {
+        margin-left: none;
+        color: blue;
+    }
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Coding Quiz</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav>
+        <div class="nav-wrapper">
+            <span class="highscore"><a href="highscore.html">High Scores</a></span>
+            <span class="timerlabel">Time Left:<span id="timer">100</span></span>
+        </div>
+    </nav>
+    <section>
+        <div id="getReady" class="default container">
+            <h1>How much do you know about coding? Are you ready to be challenged?</h1>
+            <h1>Push the button below to start to quiz!</h1>
+            <a id="start" class="waves-effect waves-light btn startnow">Start</a>
+        </div>
+        <div class="game container">
+            <div class="questBox">
+                <div class="row">
+                    <h1 id="questiontitle"></h1>
+                </div>
+                <div class="row">
+                    <ul id="answeropts">
+                    </ul>
+                </div>
+                <div class="row">
+                    <a class="waves-effect waves-light btn" id="next">Next</a>
+                </div>
+            </div>
+            <div class="saveScore">
+                <h1 id="newScore">Default</h1>
+                <form id="scoreForm">
+                    <div class="row">
+                        <div class="input-field col s6 offset-m3">
+                            <input placeholder="Placeholder" id="name" type="text" class="validate">
+                            <label for="name">Name</label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="script.js" async defer></script>
+</body>
+
+</html>
