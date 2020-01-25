@@ -4,7 +4,6 @@ UNH Bootcamp Week 5 HW
 ![alt text](Images/codequiz.png)
 
 
-Link to live website: (https://sldelay.github.io/coding_quizHW/)
 
 ## Instructions
 
