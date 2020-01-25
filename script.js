@@ -30,7 +30,7 @@ $(document).ready(function () {
         }
     ]
 
-    let randomOrder = questionArr.sort(() => Math.random() - 0.5)
+    let randomOrder = questionArr.sort(() => Math.random() - 0.5);
     let index = 0;
     let timeLeft = 99;
     let timerFunc;
@@ -52,14 +52,14 @@ $(document).ready(function () {
 
     }
 
-    $("#start").on("click", startTimer)
+    $("#start").on("click", startTimer);
 
     function setQuestion() {
         if (index === randomOrder.length) {
-            endGame()
+            endGame();
             return;
         }
-        $(".choice").remove()
+        $(".choice").remove();
         let answer = randomOrder[index].answer;
         let quest = $("#questiontitle");
         quest.addClass("h1");
@@ -75,26 +75,81 @@ $(document).ready(function () {
         })
 
         $(".choice").on("click", function (event) {
-            let userChoice = $(event.target).attr('data-num')
+            let userChoice = $(event.target).attr('data-num');
             if (parseInt(userChoice) === answer) {
                 $(this).addClass("correct");
+                $(".choice").off("click");
             }
             if (parseInt(userChoice) !== answer) {
                 $(this).addClass("incorrect");
-                timeLeft -= 10
+                $(".choice").off("click");
+                timeLeft -= 10;
             }
         })
-        index++
+        index++;
     }
-    setQuestion()
+    setQuestion();
 
-    $("#next").on("click", setQuestion)
+    $("#next").on("click", setQuestion);
 
     function endGame() {
         clearInterval(timerFunc);
         $(".questBox").hide();
         $(".saveScore").show();
+        displayScore();
     }
+
+    function displayScore() {
+        $("#result").text(timeLeft + 1);
+    }
+
+    function getHighScores() {
+        let myHighScores = JSON.parse(localStorage.getItem("highScores"));
+        if (myHighScores === null) {
+            myHighScores = [];
+        }
+
+        return myHighScores;
+    }
+
+    function storeMyScore(highScores) {
+        localStorage.setItem("highScores", JSON.stringify(highScores));
+    }
+
+    $("#submit").on("click", function(event) {
+        event.preventDefault();
+        
+        let initials = document.getElementById("name").value;
+
+        if (initials === "") {
+            return;
+        }
+        
+        let newScore = `${initials} ${timeLeft + 1}`;
+        let highScores = getHighScores();
+        highScores.push(newScore);
+        
+        storeMyScore(highScores);
+        document.getElementById("name").value = "";
+        window.location.href = "highscore.html"
+
+    })
+
+    function displayHighScore() {
+        highScores = getHighScores();
+        highScores.forEach(function(item) {
+            newH2 = $("<h2>");
+            newH2.text(item);
+            $("#highH1").append(newH2);
+        })
+    } 
+    displayHighScore()
+
+
+    $("#clear").on("click", function() {
+        localStorage.clear()
+        location.reload()
+    })
 
 });
 
