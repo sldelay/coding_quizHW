@@ -1,7 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Monoton|Raleway:400,600&display=swap');
 
+body, html {
+    height: 100vh;
+    display: grid;
+    line-height: 1;
+}
+
 body {
-    background-image: url("./Images/stock-photography-KZNTEn2r6tw-unsplash.jpg");
+    background-image: url("./Images/glen-mccallum-Hm1c9F_4jnk-unsplash.jpg");
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -40,6 +46,8 @@ h1.startH1 {
     font-family: 'Monoton', cursive;
     font-size: 2.5em;
     word-spacing: .15em;
+    color: #3a2f2f;
+    font-weight: bold;
 }
 
 h1 {
@@ -62,12 +70,11 @@ h2 {
     background-color: #c3ade0;
 }
 
-/* a.playnow {
-    margin-top: 4em;
-} */
-
 div.nav-wrapper {
     background-color:  #4b4e63;
+    margin-bottom: 2em;
+    text-align: center;
+    font-weight: 600;
 }
 
 div.default {
@@ -76,12 +83,9 @@ div.default {
     text-align: center;
     min-height: 35em;
     border-radius: .5em;
-    box-shadow: 5px 5px 10px #62546d;
+    box-shadow: 5px 5px 10px #322b38;
     padding: .5em;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    margin: auto;
 }
 
 div.game {
@@ -89,13 +93,14 @@ div.game {
     background-color: rgb(255, 255, 255);
     text-align: center;
     border-radius: .5em;
-    box-shadow: 5px 5px 10px rgb(167, 165, 165);
+    box-shadow: 5px 5px 10px #322b38;
     padding: 1em;
     display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    margin-top: 1em;
+    margin-bottom: 2em;
+    margin: auto;
+    max-height: 40em;
+    overflow: scroll;
 }
 
 span {
@@ -104,11 +109,7 @@ span {
 }
 
 
-span.highscore {
-    margin-left: 15%;
-}
-
-.choice {
+li.choice {
     font-family: Arial, Helvetica, sans-serif;
     background-color:#464346;
     color: rgb(255, 255, 255);
@@ -127,11 +128,11 @@ span.highscore {
     display: none; 
 }
 
-.correct {
+li.correct {
  background-color: green;
 }
 
-.incorrect {
+li.incorrect {
     background-color: red;
 }
 
@@ -140,10 +141,21 @@ span.highscore {
     margin-top: 5em;
 }
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 325px) {
 
-    span.highscore {
-        margin-left: none;
-        color: blue;
+    div.game {
+        max-height: 35em;
     }
 }
+
+@media screen and (max-width: 425px) {
+
+    li.choice {
+        width: 100%;
+    }
+
+    h1.startH1 {
+        font-size: 2em;
+    }
+}
+
