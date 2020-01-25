@@ -119,7 +119,7 @@ $(document).ready(function () {
     $("#submit").on("click", function(event) {
         event.preventDefault();
         
-        let initials = document.getElementById("name").value;
+        let initials = $("#name").val();
 
         if (initials === "") {
             return;
@@ -130,7 +130,7 @@ $(document).ready(function () {
         highScores.push(newScore);
         
         storeMyScore(highScores);
-        document.getElementById("name").value = "";
+        $("#name").val(" ")
         window.location.href = "highscore.html"
 
     })
