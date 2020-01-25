@@ -1,49 +1,105 @@
+@import url('https://fonts.googleapis.com/css?family=Monoton|Raleway:400,600&display=swap');
 
 body {
-    background-color: rgb(211, 211, 211)
+    background-image: url("./Images/stock-photography-KZNTEn2r6tw-unsplash.jpg");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+a.btn-large {
+    background-color: #695bb3;
+}
+
+a.btn-large:hover {
+    background-color: #6252b4;
+}
+
+
+a.btn {
+    background-color: #695bb3;
+}
+
+a.btn:hover {
+    background-color: #6252b4;
+}
+
+button.btn {
+    background-color: #695bb3;
+}
+
+button.btn:hover {
+    background-color: #6252b4;
+}
+
+
+
+
+h1.startH1 {
+    font-family: 'Monoton', cursive;
+    font-size: 2.5em;
+    word-spacing: .15em;
 }
 
 h1 {
     font-size: 1.75em;
+    margin-top: 2em;
     margin-bottom: 1em;
+    font-family: 'Raleway', sans-serif;
 }
 
-/* h2 {
-    font-size: 1.75em;
-    margin-bottom: 1em;
+h2 {
+    font-size: 1em;
+    font-family: 'Raleway', sans-serif;
+}
+
+#timer {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#getReady {
+    background-color: #c3ade0;
+}
+
+/* a.playnow {
+    margin-top: 4em;
 } */
 
-a.playnow {
-    margin-top: 4em;
-}
-
 div.nav-wrapper {
-    background-color: rgb(128, 125, 125);
+    background-color:  #4b4e63;
 }
 
 div.default {
+    font-family: 'Raleway', sans-serif;
     background-color: rgb(255, 255, 255);
-    margin-top: 4em;
     text-align: center;
     min-height: 35em;
     border-radius: .5em;
-    box-shadow: 5px 5px 10px rgb(167, 165, 165);
+    box-shadow: 5px 5px 10px #62546d;
     padding: .5em;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 div.game {
+    font-family: Arial, Helvetica, sans-serif;
     background-color: rgb(255, 255, 255);
-    margin-top: 4em;
-    margin-bottom: 4em;
     text-align: center;
-    min-height: 35em;
     border-radius: .5em;
     box-shadow: 5px 5px 10px rgb(167, 165, 165);
     padding: 1em;
     display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 span {
+    font-family: 'Raleway', sans-serif;
     padding: .5em;
 }
 
@@ -53,7 +109,8 @@ span.highscore {
 }
 
 .choice {
-    background-color: rgb(150, 48, 150);
+    font-family: Arial, Helvetica, sans-serif;
+    background-color:#464346;
     color: rgb(255, 255, 255);
     opacity: .7;
     font-size: 1.25em;
@@ -66,6 +123,7 @@ span.highscore {
 }
 
 .saveScore {
+    font-family: 'Raleway', sans-serif;
     display: none; 
 }
 
@@ -75,6 +133,11 @@ span.highscore {
 
 .incorrect {
     background-color: red;
+}
+
+.startnow {
+    font-family: 'Raleway', sans-serif;
+    margin-top: 5em;
 }
 
 @media screen and (max-width: 992px) {
