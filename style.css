@@ -125,6 +125,7 @@ li.choice {
     margin-top: 1em;
     padding: 1em;
     border-radius: .5em;
+    cursor: pointer;
 }
 
 .saveScore {
