@@ -81,13 +81,15 @@ $(document).ready(function () {
             $(".choice").on("click", function (event) { //event listener for user choices
                 userChoice = $(event.target).attr('data-num');
                 if (parseInt(userChoice) === answer) {
+                    event.stopImmediatePropagation()
                     $(this).addClass("correct");
                     $(".choice").off("click");
                 }
                 if (parseInt(userChoice) !== answer) {
+                    event.stopImmediatePropagation()
                     $(this).addClass("incorrect");
                     $(".choice").off("click");
-                    timeLeft -= 10;
+                    timeLeft = (timeLeft - 10);
                 }
             })
         })
