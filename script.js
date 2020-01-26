@@ -34,12 +34,13 @@ $(document).ready(function () {
     let index = 0; // Sets index of first question object to 0
     let timeLeft = 99;
     let timerFunc;
+    let userChoice;
 
 
     function startTimer() { // This function hides my start screen and displays the questions
         $("#getReady").hide();
         $(".game").show();
-        timerFunc = setInterval(function() { // Timer starts counting down 
+        timerFunc = setInterval(function () { // Timer starts counting down 
             $("#timer").text(timeLeft);
             timeLeft--;
             if (timeLeft < 0) {
@@ -55,6 +56,9 @@ $(document).ready(function () {
     $("#start").on("click", startTimer); // event listener for startTimer func
 
     function startQuiz() { // this beast of a function runs the whole quiz...
+        if ((userChoice === null) && (index >= 1)) { //checks that user selected an answer
+            return;
+        }
         if (index === randomOrder.length) { // checks if user has reached the end of the questions and if so calls endGame func
             endGame();
             return;
@@ -66,26 +70,29 @@ $(document).ready(function () {
         quest.attr("data-question", randomOrder[index].question);
         quest.text(randomOrder[index].question);
 
+        userChoice = null;
         randomOrder[index].choice.forEach(function (elem, eIndex) { // creates and assigns text to choice li
             let newLi = $("<li>");
             newLi.text(elem);
             newLi.attr("data-num", eIndex);
             newLi.addClass("choice");
             $("#answeropts").append(newLi);
+
+            $(".choice").on("click", function (event) { //event listener for user choices
+                userChoice = $(event.target).attr('data-num');
+                if (parseInt(userChoice) === answer) {
+                    $(this).addClass("correct");
+                    $(".choice").off("click");
+                }
+                if (parseInt(userChoice) !== answer) {
+                    $(this).addClass("incorrect");
+                    $(".choice").off("click");
+                    timeLeft -= 10;
+                }
+            })
         })
 
-        $(".choice").on("click", function (event) { //event listener for user choices
-            let userChoice = $(event.target).attr('data-num');
-            if (parseInt(userChoice) === answer) {
-                $(this).addClass("correct");
-                $(".choice").off("click");
-            }
-            if (parseInt(userChoice) !== answer) {
-                $(this).addClass("incorrect");
-                $(".choice").off("click");
-                timeLeft -= 10;
-            }
-        })
+
         index++;
     }
     startQuiz();
@@ -116,19 +123,19 @@ $(document).ready(function () {
         localStorage.setItem("highScores", JSON.stringify(highScores));
     }
 
-    $("#submit").on("click", function(event) { // allows user to submit score and set it in local storage 
+    $("#submit").on("click", function (event) { // allows user to submit score and set it in local storage 
         event.preventDefault();
-        
+
         let initials = $("#name").val();
 
         if (initials === "") {
             return;
         }
-        
+
         let newScore = `${initials} ${timeLeft + 1}`;
         let highScores = getHighScores();
         highScores.push(newScore);
-        
+
         storeMyScore(highScores);
         $("#name").val(" ")
         window.location.href = "highscore.html"
@@ -137,16 +144,16 @@ $(document).ready(function () {
 
     function displayHighScore() { // displays high scores in highscore.html
         highScores = getHighScores();
-        highScores.forEach(function(item) {
+        highScores.forEach(function (item) {
             newH2 = $("<h2>");
             newH2.text(item);
             $("#highH1").append(newH2);
         })
-    } 
+    }
     displayHighScore()
 
 
-    $("#clear").on("click", function() { // allows user to erase scores from local storage 
+    $("#clear").on("click", function () { // allows user to erase scores from local storage 
         localStorage.clear()
         location.reload()
     })
