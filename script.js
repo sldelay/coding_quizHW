@@ -1,7 +1,7 @@
 
 $(document).ready(function () {
 
-    questionArr = [
+    questionArr = [ // Question Array
         {
             question: "Which built-in method returns the index within the calling String object of the first occurrence of the specified value?",
             choice: ["getIndex()", "location()", "indexOf()", "none of the above"],
@@ -30,20 +30,20 @@ $(document).ready(function () {
         }
     ]
 
-    let randomOrder = questionArr.sort(() => Math.random() - 0.5);
-    let index = 0;
+    let randomOrder = questionArr.sort(() => Math.random() - 0.5); //Randomizes the order of questionArr
+    let index = 0; // Sets index of first question object to 0
     let timeLeft = 99;
     let timerFunc;
 
 
-    function startTimer() {
+    function startTimer() { // This function hides my start screen and displays the questions
         $("#getReady").hide();
         $(".game").show();
-        timerFunc = setInterval(function() {
+        timerFunc = setInterval(function() { // Timer starts counting down 
             $("#timer").text(timeLeft);
             timeLeft--;
             if (timeLeft < 0) {
-                clearInterval(timerFunc);
+                clearInterval(timerFunc); // When timer reaches 0 it hides the questions and shows my save score div
                 $("#timer").text("0");
                 $(".questBox").hide();
                 $(".saveScore").show();
@@ -52,21 +52,21 @@ $(document).ready(function () {
 
     }
 
-    $("#start").on("click", startTimer);
+    $("#start").on("click", startTimer); // event listener for startTimer func
 
-    function setQuestion() {
-        if (index === randomOrder.length) {
+    function startQuiz() { // this beast of a function runs the whole quiz...
+        if (index === randomOrder.length) { // checks if user has reached the end of the questions and if so calls endGame func
             endGame();
             return;
         }
-        $(".choice").remove();
-        let answer = randomOrder[index].answer;
+        $(".choice").remove(); //removes previously created li choices
+        let answer = randomOrder[index].answer; // question generator 
         let quest = $("#questiontitle");
         quest.addClass("h1");
         quest.attr("data-question", randomOrder[index].question);
         quest.text(randomOrder[index].question);
 
-        randomOrder[index].choice.forEach(function (elem, eIndex) {
+        randomOrder[index].choice.forEach(function (elem, eIndex) { // creates and assigns text to choice li
             let newLi = $("<li>");
             newLi.text(elem);
             newLi.attr("data-num", eIndex);
@@ -74,7 +74,7 @@ $(document).ready(function () {
             $("#answeropts").append(newLi);
         })
 
-        $(".choice").on("click", function (event) {
+        $(".choice").on("click", function (event) { //event listener for user choices
             let userChoice = $(event.target).attr('data-num');
             if (parseInt(userChoice) === answer) {
                 $(this).addClass("correct");
@@ -88,22 +88,22 @@ $(document).ready(function () {
         })
         index++;
     }
-    setQuestion();
+    startQuiz();
 
-    $("#next").on("click", setQuestion);
+    $("#next").on("click", startQuiz); //event listener to start the quiz and provide first question 
 
-    function endGame() {
+    function endGame() { // defines what happens after the user has answered the last question 
         clearInterval(timerFunc);
         $(".questBox").hide();
         $(".saveScore").show();
         displayScore();
     }
 
-    function displayScore() {
+    function displayScore() { // displays the score for the user to see
         $("#result").text(timeLeft + 1);
     }
 
-    function getHighScores() {
+    function getHighScores() { // gets saved high scores from local storage
         let myHighScores = JSON.parse(localStorage.getItem("highScores"));
         if (myHighScores === null) {
             myHighScores = [];
@@ -112,11 +112,11 @@ $(document).ready(function () {
         return myHighScores;
     }
 
-    function storeMyScore(highScores) {
+    function storeMyScore(highScores) { // function for setting high scores in local storage
         localStorage.setItem("highScores", JSON.stringify(highScores));
     }
 
-    $("#submit").on("click", function(event) {
+    $("#submit").on("click", function(event) { // allows user to submit score and set it in local storage 
         event.preventDefault();
         
         let initials = $("#name").val();
@@ -135,7 +135,7 @@ $(document).ready(function () {
 
     })
 
-    function displayHighScore() {
+    function displayHighScore() { // displays high scores in highscore.html
         highScores = getHighScores();
         highScores.forEach(function(item) {
             newH2 = $("<h2>");
@@ -146,7 +146,7 @@ $(document).ready(function () {
     displayHighScore()
 
 
-    $("#clear").on("click", function() {
+    $("#clear").on("click", function() { // allows user to erase scores from local storage 
         localStorage.clear()
         location.reload()
     })
